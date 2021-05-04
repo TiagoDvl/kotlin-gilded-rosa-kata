@@ -11,6 +11,10 @@ class GildedRoseQualityFactory(override var quality: Int) : QualityFactory {
     }
 
     override fun changeQualityValue(modifier: Modifier): Int {
+        if (modifier == Modifier.STABLE) {
+            return quality
+        }
+
         quality += modifier.factor
 
         when {

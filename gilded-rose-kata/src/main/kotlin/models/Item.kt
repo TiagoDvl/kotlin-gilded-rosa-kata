@@ -3,7 +3,7 @@ package models
 import enums.*
 import interfaces.*
 
-abstract class Item(val name: String, var sellIn: Int, private val quality: Int): ItemQualityModifier {
+abstract class Item(val name: String, var sellIn: Int, quality: Int): ItemQualityModifier {
 
     private val qualityFactory: QualityFactory = GildedRoseQualityFactory(quality)
 
