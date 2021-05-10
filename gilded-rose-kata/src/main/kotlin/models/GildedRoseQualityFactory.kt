@@ -3,26 +3,22 @@ package models
 import enums.*
 import interfaces.*
 
-class GildedRoseQualityFactory(override var quality: Int) : QualityFactory {
+object GildedRoseQualityFactory : QualityFactory {
 
-    companion object {
-        const val MINIMUM_THRESHOLD = 0
-        const val MAXIMUM_THRESHOLD = 50
-    }
-
-    override fun changeQualityValue(modifier: Modifier): Int {
+    override fun makeQuality(quality: Int, modifier: Modifier): Int {
+        var tempQuality = quality
         if (modifier == Modifier.STABLE) {
-            return quality
+            return tempQuality
         }
 
-        quality += modifier.factor
+        tempQuality += modifier.factor
 
         when {
-            quality < MINIMUM_THRESHOLD -> quality = MINIMUM_THRESHOLD
-            quality > MAXIMUM_THRESHOLD -> quality = MAXIMUM_THRESHOLD
+            quality < MINIMUM_THRESHOLD -> tempQuality = MINIMUM_THRESHOLD
+            quality > MAXIMUM_THRESHOLD -> tempQuality = MAXIMUM_THRESHOLD
         }
 
-        return quality
+        return tempQuality
     }
 
 }
